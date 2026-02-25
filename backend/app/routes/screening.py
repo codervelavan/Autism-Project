@@ -250,9 +250,16 @@ def gamified_predict(
     
     cap = cv2.VideoCapture(file_location)
     frame_probs = []
+    frame_count = 0
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret: break
+        
+        frame_count += 1
+        # Sample every 15th frame for games (faster)
+        if frame_count % 15 != 0:
+            continue
+            
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         prob = predict_image(Image.fromarray(rgb))
         frame_probs.append(prob)

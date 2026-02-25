@@ -1,92 +1,82 @@
+"use client";
+
 import Link from "next/link";
 import {
-  MagnifyingGlassIcon,
-  UserGroupIcon,
-  BeakerIcon,
-  ClockIcon,
+  SparklesIcon,
   ShieldCheckIcon,
   AcademicCapIcon,
-  StarIcon
+  ArrowRightIcon,
+  PlayIcon,
+  HeartIcon,
+  GlobeAltIcon,
+  UserGroupIcon
 } from "@heroicons/react/24/outline";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="w-full max-w-7xl px-6 py-12 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-100">
-              <StarIcon className="w-4 h-4" />
-              Trusted by 5,000+ Parents & Clinicians
+      <section className="w-full max-w-7xl px-6 pt-20 pb-32 md:pt-32 md:pb-48 relative overflow-hidden">
+        {/* Background Accents */}
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] -z-10 opacity-60"></div>
+        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-indigo-50 rounded-full blur-[100px] -z-10 opacity-40"></div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="space-y-10">
+            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white border border-slate-100 shadow-sm">
+              <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Clinical AI Integration v2.4</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8">
-              Early Detection for <br />
-              <span className="text-blue-600">Autism Markers</span>
+
+            <h1 className="text-6xl md:text-8xl font-black text-slate-900 leading-[1.05] tracking-tighter">
+              Precision <br />
+              <span className="text-blue-600">Early Detection</span>
             </h1>
-            <p className="text-xl text-slate-500 mb-10 leading-relaxed max-w-xl">
-              NeuroWeave provides clinical-grade AI screening that combines behavioral insights with computer vision to help parents find clarity early.
+
+            <p className="text-xl text-slate-500 font-medium leading-relaxed max-w-lg">
+              NeuroWeave fuses clinical behavioral metrics with computer vision to identify autism markers with 94% statistical accuracy.
             </p>
 
-            {/* Intake Bar (Search-like) */}
-            <div className="bg-white p-2 rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 flex flex-col md:flex-row items-stretch md:items-center gap-2 max-w-2xl">
-              <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-slate-100">
-                <MagnifyingGlassIcon className="w-5 h-5 text-slate-400" />
-                <input
-                  type="text"
-                  placeholder="How old is your child?"
-                  className="bg-transparent border-none outline-none text-slate-900 placeholder:text-slate-400 flex-1 text-sm font-medium"
-                />
-              </div>
-              <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-slate-100">
-                <UserGroupIcon className="w-5 h-5 text-slate-400" />
-                <select className="bg-transparent border-none outline-none text-slate-900 text-sm font-medium flex-1 cursor-pointer">
-                  <option>Select Concern</option>
-                  <option>Speech Delay</option>
-                  <option>Social Interaction</option>
-                  <option>Eye Contact</option>
-                  <option>Motor Skills</option>
-                </select>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-5 pt-4">
               <Link
                 href="/screening"
-                className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all text-center"
+                className="px-10 py-5 bg-blue-600 text-white rounded-[2rem] font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-2xl shadow-blue-500/30 active:scale-95"
               >
-                Scan Now
+                Start Clinical Scan <ArrowRightIcon className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/neuroplay"
+                className="px-10 py-5 bg-white border-2 border-slate-100 text-slate-900 rounded-[2rem] font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-slate-50 transition-all shadow-xl shadow-slate-200/50 active:scale-95"
+              >
+                Launch NeuroPlay <PlayIcon className="w-5 h-5 text-blue-600" />
               </Link>
             </div>
 
-            <div className="mt-8 flex items-center gap-6 text-slate-400">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map(i => (
-                  <div key={i} className={`w-10 h-10 rounded-full border-4 border-white bg-slate-200 flex items-center justify-center overflow-hidden`}>
-                    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 10}`} alt="User" />
-                  </div>
-                ))}
+            <div className="flex items-center gap-8 pt-10 border-t border-slate-100">
+              <div>
+                <p className="text-3xl font-black text-slate-900">94.2%</p>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Model Accuracy</p>
               </div>
-              <p className="text-sm font-medium">Join 200+ parents who scanned today</p>
+              <div className="w-px h-10 bg-slate-100"></div>
+              <div>
+                <p className="text-3xl font-black text-slate-900">12k+</p>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Global Sessions</p>
+              </div>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute top-0 right-0 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10 animate-pulse"></div>
-            <div className="absolute bottom-0 left-0 w-72 h-72 bg-green-100 rounded-full blur-3xl opacity-50 -z-10 animate-pulse delay-700"></div>
-            <div className="bg-white rounded-[40px] shadow-2xl overflow-hidden border border-slate-50 relative aspect-square group">
-              <img
-                src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=800"
-                alt="Pediatrician and child"
-                className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-              <div className="absolute bottom-8 left-8 right-8">
-                <div className="bg-white/90 backdrop-blur px-6 py-5 rounded-3xl border border-white/20 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">
-                    <ShieldCheckIcon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="text-slate-900 font-bold">94% Accuracy Rate</p>
-                    <p className="text-slate-500 text-xs">Validated by leading specialists</p>
-                  </div>
+          <div className="relative group">
+            <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600/10 to-indigo-600/10 rounded-[4rem] blur-2xl group-hover:scale-105 transition-transform duration-1000"></div>
+            <div className="relative card-premium p-4 md:p-8 bg-white/40 backdrop-blur-xl">
+              <div className="aspect-[4/3] rounded-[3rem] bg-slate-200 overflow-hidden relative shadow-inner">
+                {/* Placeholder for a high-quality clinical image or generated asset */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent flex items-center justify-center">
+                  <ShieldCheckIcon className="w-32 h-32 text-white/50" />
+                </div>
+                {/* Overlay Stat */}
+                <div className="absolute top-8 left-8 p-6 bg-white/90 backdrop-blur rounded-3xl shadow-xl border border-white/50 animate-in slide-in-from-left-10 duration-1000">
+                  <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-1">Live Telemetry</p>
+                  <p className="text-2xl font-black text-slate-900">Active Tracking</p>
                 </div>
               </div>
             </div>
@@ -95,56 +85,144 @@ export default function Home() {
       </section>
 
       {/* Services Grid */}
-      <section className="w-full bg-white py-24 border-t border-slate-100">
+      <section className="w-full bg-slate-50/50 py-32 border-y border-slate-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Comprehensive Support Matrix</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">We provide a full-spectrum approach to early childhood development tracking.</p>
+          <div className="text-center mb-24 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest">
+              <SparklesIcon className="w-4 h-4" />
+              Comprehensive Ecosystem
+            </div>
+            <h2 className="text-5xl font-black text-slate-900 tracking-tight">Clinical Grade Solutions</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "AI Behavioral Scan", desc: "Automated analysis of social and repetitive markers.", icon: BeakerIcon, color: "blue" },
-              { title: "NeuroPlay Mode", desc: "Gamified activities that record behavioral data.", icon: AcademicCapIcon, color: "green" },
-              { title: "Clinical Reporting", desc: "PDF-ready reports for your pediatrician.", icon: ShieldCheckIcon, color: "blue" },
-              { title: "24/7 AI Assistant", desc: "Clear your doubts with our expert chatbot.", icon: ClockIcon, color: "slate" },
+              {
+                title: "Multimodal Scan",
+                desc: "Fusing tabular intake with real-time video biometrics.",
+                icon: ShieldCheckIcon,
+                link: "/screening",
+                color: "blue"
+              },
+              {
+                title: "NeuroPlay",
+                desc: "Interactive games that capture behavior naturally.",
+                icon: PlayIcon,
+                link: "/neuroplay",
+                color: "indigo"
+              },
+              {
+                title: "Parent Portal",
+                desc: "Comprehensive guidelines and care strategies.",
+                icon: HeartIcon,
+                link: "/care",
+                color: "emerald"
+              },
+              {
+                title: "Research Lab",
+                desc: "Direct access to peer-reviewed documentation.",
+                icon: AcademicCapIcon,
+                link: "/research",
+                color: "purple"
+              }
             ].map((service, i) => (
-              <div key={i} className="clinical-card p-10 group cursor-pointer hover:-translate-y-2">
-                <div className={`w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-8 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-all`}>
-                  <service.icon className={`w-7 h-7 text-blue-600 group-hover:text-white transition-colors`} />
+              <Link key={i} href={service.link} className="card-premium p-10 flex flex-col justify-between group h-full">
+                <div>
+                  <div className={`w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-8 border border-slate-100 group-hover:bg-blue-600 transition-all duration-500`}>
+                    <service.icon className="w-7 h-7 text-slate-400 group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-2xl font-black text-slate-900 mb-4">{service.title}</h3>
+                  <p className="text-slate-500 text-sm font-medium leading-relaxed">{service.desc}</p>
                 </div>
-                <h3 className="text-xl font-extrabold text-slate-900 mb-4">{service.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{service.desc}</p>
-              </div>
+                <div className="mt-10 flex items-center justify-between">
+                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Initialize</span>
+                  <ArrowRightIcon className="w-5 h-5 text-slate-200 group-hover:text-blue-600 group-hover:translate-x-2 transition-all" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="w-full py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-slate-900 rounded-[48px] p-12 md:p-20 grid grid-cols-2 md:grid-cols-4 gap-12 text-center text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl"></div>
+      {/* AI Assistant Section */}
+      <section className="w-full py-32 px-6">
+        <div className="max-w-7xl mx-auto card-premium p-12 md:p-24 bg-slate-900 text-white relative overflow-hidden shadow-[0_64px_128px_-32px_rgba(15,23,42,0.5)]">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[160px] -mr-[400px] -mt-[400px]"></div>
 
-            {[
-              { label: "Successful Scans", val: "12,000+" },
-              { label: "Clinical Partners", val: "450+" },
-              { label: "AI Confidence", val: "98.2%" },
-              { label: "Avg Test Time", val: "5-min" },
-            ].map((stat, i) => (
-              <div key={i}>
-                <p className="text-4xl md:text-5xl font-black mb-2 text-blue-400">{stat.val}</p>
-                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">{stat.label}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+            <div className="space-y-10">
+              <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                <UserGroupIcon className="w-5 h-5 text-blue-400" />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-100">AI Support System</span>
               </div>
-            ))}
+              <h2 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tighter">
+                Talk to <span className="text-blue-400">NeuroAssistant.</span>
+              </h2>
+              <p className="text-xl text-slate-400 font-medium leading-relaxed">
+                Clear your doubts with our compassion-trained AI model specialized in Autism Spectrum Disorder. Available 24/7 for emotional and clinical guidance.
+              </p>
+              <button onClick={() => window.scrollTo(0, document.body.scrollHeight)} className="px-10 py-5 bg-white text-slate-900 rounded-[2rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-white/10 hover:bg-blue-50 transition-all active:scale-95">
+                Open Assistant
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              {[
+                { label: "Wikipedia Insights", icon: GlobeAltIcon },
+                { label: "Multilingual Support", icon: SparklesIcon },
+                { label: "Privacy First", icon: ShieldCheckIcon },
+                { label: "Clinical Context", icon: AcademicCapIcon }
+              ].map((item, i) => (
+                <div key={i} className="p-8 rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-sm group hover:bg-white/10 transition-all">
+                  <item.icon className="w-10 h-10 text-blue-400 mb-6 group-hover:scale-110 transition-transform" />
+                  <p className="font-bold text-sm tracking-tight">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="w-full py-12 px-6 text-center text-slate-400 border-t border-slate-100">
-        <p className="text-sm">© 2026 NeuroWeave Medical Technology. Not a replacement for professional clinical diagnosis.</p>
+      {/* Footer */}
+      <footer className="w-full py-20 px-6 border-t border-slate-100 bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
+          <div className="max-w-sm">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
+                <HeartIcon className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-2xl font-black tracking-tighter text-slate-900">NeuroWeave</span>
+            </div>
+            <p className="text-slate-500 font-medium leading-relaxed italic">
+              "Empowering parents through precision clinical intelligence and compassionate AI support."
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-20">
+            <div className="space-y-6">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Platform</p>
+              <ul className="space-y-4 text-sm font-bold text-slate-600">
+                <li className="hover:text-blue-600 cursor-pointer transition-colors"><Link href="/screening">Clinical Scan</Link></li>
+                <li className="hover:text-blue-600 cursor-pointer transition-colors"><Link href="/neuroplay">NeuroPlay Games</Link></li>
+                <li className="hover:text-blue-600 cursor-pointer transition-colors"><Link href="/dashboard">Insights Dashboard</Link></li>
+              </ul>
+            </div>
+            <div className="space-y-6">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Resources</p>
+              <ul className="space-y-4 text-sm font-bold text-slate-600">
+                <li className="hover:text-blue-600 cursor-pointer transition-colors"><Link href="/research">Research Archive</Link></li>
+                <li className="hover:text-blue-600 cursor-pointer transition-colors"><Link href="/care">Care Manual</Link></li>
+                <li className="hover:text-blue-600 cursor-pointer transition-colors">Documentation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto pt-16 mt-16 border-t border-slate-50 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p className="text-xs font-black text-slate-300 uppercase tracking-widest">© 2026 NeuroWeave Medical AI Lab</p>
+          <div className="flex gap-8 text-xs font-black text-slate-300 uppercase tracking-widest">
+            <span className="cursor-pointer hover:text-blue-600">Privacy</span>
+            <span className="cursor-pointer hover:text-blue-600">Terms</span>
+            <span className="cursor-pointer hover:text-blue-600">Liability</span>
+          </div>
+        </div>
       </footer>
     </div>
   );

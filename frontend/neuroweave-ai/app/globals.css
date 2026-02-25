@@ -1,34 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Plus Jakarta Sans', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', 'Plus Jakarta Sans', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 :root {
-  --background: #f8fafc;
+  --background: #ffffff;
   --foreground: #0f172a;
   --primary: #2563eb;
   --primary-foreground: #ffffff;
-  --accent: #22c55e;
+  --secondary: #f8fafc;
+  --accent: #10b981;
   --card: #ffffff;
   --card-foreground: #1e293b;
-  --border: #e2e8f0;
+  --border: #f1f5f9;
   --muted: #64748b;
-  --sidebar: #ffffff;
-}
-
-.dark {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --primary: #3b82f6;
-  --primary-foreground: #0f172a;
-  --accent: #4ade80;
-  --card: #1e293b;
-  --card-foreground: #f8fafc;
-  --border: #334155;
-  --muted: #94a3b8;
-  --sidebar: #1e293b;
+  --radius: 1.5rem;
 }
 
 body {
@@ -36,23 +24,31 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl shadow-blue-500/5;
+    @apply bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_8px_32px_0_rgba(31, 38, 135, 0.07)];
   }
 
-  .glass-dark {
-    @apply bg-slate-900/80 backdrop-blur-xl border border-white/5;
+  .clinical-shadow {
+    @apply shadow-[0_20px_50px_rgba(8, _112, _184, _0.05)];
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 font-bold;
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-slate-900 to-slate-500 font-bold;
   }
 
-  .clinical-card {
-    @apply bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300;
+  .primary-gradient {
+    @apply bg-gradient-to-tr from-blue-600 to-indigo-500;
+  }
+
+  .card-premium {
+    @apply bg-white rounded-[2rem] border border-slate-100/50 shadow-[0_4px_24px_rgba(0, 0, 0, 0.02)] hover:shadow-[0_12px_48px_rgba(0, 0, 0, 0.06)] transition-all duration-500;
   }
 }

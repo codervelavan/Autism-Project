@@ -88,8 +88,8 @@ export default function Chatbot() {
                         {messages.map((msg, i) => (
                             <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                                 <div className={`max-w-[85%] px-5 py-4 rounded-[24px] text-sm leading-relaxed shadow-sm ${msg.role === "user"
-                                        ? "bg-blue-600 text-white rounded-tr-none"
-                                        : "bg-white text-slate-700 rounded-tl-none border border-slate-100"
+                                    ? "bg-blue-600 text-white rounded-tr-none"
+                                    : "bg-white text-slate-700 rounded-tl-none border border-slate-100"
                                     }`}>
                                     {msg.content}
                                 </div>
@@ -105,6 +105,26 @@ export default function Chatbot() {
                             </div>
                         )}
                     </div>
+
+                    {/* Suggestions */}
+                    {!messages.some(m => m.role === "user") && (
+                        <div className="px-6 pb-2 overflow-x-auto flex gap-2 no-scrollbar">
+                            {[
+                                "What are the early signs?",
+                                "Explain ABA therapy.",
+                                "How to support social skills?",
+                                "Tell me about DSM-5."
+                            ].map((q, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => { setInput(q); }}
+                                    className="whitespace-nowrap px-4 py-2 rounded-xl bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest border border-blue-100 hover:bg-blue-100 transition-colors"
+                                >
+                                    {q}
+                                </button>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Input */}
                     <div className="p-6 bg-white border-t border-slate-50">

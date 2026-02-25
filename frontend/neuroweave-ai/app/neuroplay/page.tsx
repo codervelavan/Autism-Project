@@ -73,11 +73,19 @@ export default function NeuroPlay() {
             formData.append("file", new File([recordedVideo], "play_session.webm", { type: "video/webm" }));
             formData.append("engagement_score", score.toString());
 
-            const res = await axios.post("http://localhost:8000/screening/gamified", formData);
+            // Increase timeout for video processing (60 seconds)
+            const res = await axios.post("http://localhost:8000/screening/gamified", formData, {
+                timeout: 60000,
+                headers: { "Content-Type": "multipart/form-data" }
+            });
             setResult(res.data);
-        } catch (err) {
+        } catch (err: any) {
             console.error("Analysis failed", err);
-            alert("Multimodal analysis failed. Check your connection.");
+            if (err.code === 'ECONNABORTED') {
+                alert("The analysis is taking longer than expected. Please try again with a shorter recording.");
+            } else {
+                alert(`Analysis failed: ${err.response?.data?.detail || err.message}. Ensure the backend is reachable.`);
+            }
         } finally {
             setLoading(false);
         }
