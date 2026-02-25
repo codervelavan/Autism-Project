@@ -24,25 +24,27 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl">
-      <div className="bg-white/80 backdrop-blur-2xl border border-slate-200/50 rounded-[1.5rem] px-8 py-4 shadow-[0_20px_50px_rgba(8,112,184,0.08)] flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="w-11 h-11 rounded-2xl bg-blue-600 flex items-center justify-center shadow-2xl shadow-blue-500/30 group">
-            <HeartIcon className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-          </div>
-          <span className="text-2xl font-black tracking-tighter text-slate-900">
-            Neuro<span className="text-blue-600">Weave</span>
-          </span>
+    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] xl:w-full xl:max-w-7xl px-4 md:px-0">
+      <div className="bg-[#0A0B1E]/60 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] px-6 md:px-12 py-5 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] flex items-center justify-between">
+        <div className="flex items-center gap-4 shrink-0">
+          <Link href="/" className="flex items-center gap-4 active:scale-95 transition-all group">
+            <div className="w-12 h-12 rounded-[1.25rem] bg-[#20FFB0] flex items-center justify-center shadow-[0_0_30px_rgba(32,255,176,0.25)] group-hover:shadow-[0_0_40px_rgba(32,255,176,0.4)] group-hover:rotate-6 transition-all duration-500">
+              <HeartIcon className="w-7 h-7 text-[#0A0B1E]" />
+            </div>
+            <span className="text-2xl font-black tracking-tighter text-white">
+              Neuro<span className="text-[#20FFB0]">Weave</span>
+            </span>
+          </Link>
         </div>
 
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-1 xl:gap-2 bg-white/[0.03] p-1.5 rounded-[2rem] border border-white/5 shadow-inner">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`px-5 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all flex items-center gap-2.5 ${pathname === link.href
-                  ? "bg-blue-600 text-white shadow-xl shadow-blue-500/20 active:scale-95"
-                  : "text-slate-400 hover:text-slate-900"
+              className={`px-6 py-3 rounded-[1.5rem] text-[9px] xl:text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center gap-3 ${pathname === link.href
+                ? "bg-[#20FFB0] text-[#0A0B1E] shadow-[0_0_20px_rgba(32,255,176,0.2)]"
+                : "text-white/40 hover:text-white hover:bg-white/5"
                 }`}
             >
               <link.icon className="w-4 h-4" />
@@ -51,15 +53,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 shrink-0">
           <Link
             href="/screening"
-            className="hidden sm:inline-flex px-8 py-3 rounded-2xl bg-slate-900 text-white text-[11px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/10 active:scale-95"
+            className="hidden sm:inline-flex px-10 py-3.5 rounded-2xl bg-white text-[#0A0B1E] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#20FFB0] transition-all shadow-2xl active:scale-95"
           >
             Run Scan
           </Link>
-          <button className="lg:hidden p-3 rounded-2xl bg-slate-50 border border-slate-100">
-            <Squares2X2Icon className="w-6 h-6 text-slate-600" />
+          <button className="lg:hidden p-4 rounded-2xl bg-white/5 border border-white/10 active:scale-95 transition-all">
+            <Squares2X2Icon className="w-6 h-6 text-white" />
           </button>
         </div>
       </div>

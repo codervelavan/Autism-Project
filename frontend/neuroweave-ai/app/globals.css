@@ -1,54 +1,70 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', 'Plus Jakarta Sans', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: 'Inter', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --color-biotech-green: #20FFB0;
+  --color-biotech-blue: #0A0B1E;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --secondary: #f8fafc;
-  --accent: #10b981;
-  --card: #ffffff;
-  --card-foreground: #1e293b;
-  --border: #f1f5f9;
-  --muted: #64748b;
-  --radius: 1.5rem;
-}
+@layer base {
+  :root {
+    --background: #0A0B1E;
+    --foreground: #F8FAFC;
+  }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-}
-
-::selection {
-  background-color: rgba(37, 99, 235, 0.1);
-  color: #2563eb;
+  html,
+  body {
+    background-color: #0A0B1E;
+    color: #F8FAFC;
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    margin: 0;
+  }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_8px_32px_0_rgba(31, 38, 135, 0.07)];
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
   }
 
-  .clinical-shadow {
-    @apply shadow-[0_20px_50px_rgba(8, _112, _184, _0.05)];
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-slate-900 to-slate-500 font-bold;
-  }
-
-  .primary-gradient {
-    @apply bg-gradient-to-tr from-blue-600 to-indigo-500;
+  .biotech-glow {
+    text-shadow: 0 0 20px rgba(32, 255, 176, 0.5);
   }
 
   .card-premium {
-    @apply bg-white rounded-[2rem] border border-slate-100/50 shadow-[0_4px_24px_rgba(0, 0, 0, 0.02)] hover:shadow-[0_12px_48px_rgba(0, 0, 0, 0.06)] transition-all duration-500;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
+  }
+
+  .card-premium:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .neon-border {
+    border: 1px solid rgba(32, 255, 176, 0.2);
+  }
+
+  .neon-border:hover {
+    border-color: rgba(32, 255, 176, 0.5);
+    box-shadow: 0 0 15px rgba(32, 255, 176, 0.1);
+  }
+
+  .glow-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background-color: #20FFB0;
+    box-shadow: 0 0 12px #20FFB0;
   }
 }

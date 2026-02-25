@@ -27,10 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0A0B1E] text-[#F8FAFC]`}
       >
+        <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(32,255,176,0.05)_0%,_transparent_50%)] pointer-events-none"></div>
         <Navbar />
-        <main className="pt-28">
+        <main className="relative pt-28">
           {children}
         </main>
         <Chatbot />

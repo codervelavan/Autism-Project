@@ -27,13 +27,13 @@ export default function BabyLeapGame({ onScoreUpdate, onGameOver, isPlaying }: G
         let animationFrame: number;
 
         const spawnBubble = () => {
-            const colors = ["#3b82f6", "#60a5fa", "#93c5fd"];
+            const colors = ["#20FFB0", "#1DE69F", "#0EA5E9"];
             gameState.current.bubbles.push({
                 x: Math.random() * (canvas.width - 40) + 20,
                 y: canvas.height + 20,
-                radius: Math.random() * 15 + 10,
+                radius: Math.random() * 15 + 12,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                speed: Math.random() * 2 + 1,
+                speed: Math.random() * 2 + 1.5,
             });
         };
 
@@ -41,27 +41,46 @@ export default function BabyLeapGame({ onScoreUpdate, onGameOver, isPlaying }: G
             if (!ctx || !canvas) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            // Draw grid lines for "hi-tech" feel
+            ctx.strokeStyle = "rgba(32, 255, 176, 0.05)";
+            ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, canvas.height);
+                ctx.stroke();
+            }
+            for (let i = 0; i < canvas.height; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(canvas.width, i);
+                ctx.stroke();
+            }
+
             // Spawn new bubbles
             const now = Date.now();
-            if (now - gameState.current.lastSpawn > 1000) {
+            if (now - gameState.current.lastSpawn > 800) {
                 spawnBubble();
                 gameState.current.lastSpawn = now;
             }
 
             // Draw and move bubbles
-            gameState.current.bubbles.forEach((bubble, index) => {
+            gameState.current.bubbles.forEach((bubble) => {
                 bubble.y -= bubble.speed;
 
                 ctx.beginPath();
                 ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
-                ctx.fillStyle = bubble.color;
+                const gradient = ctx.createRadialGradient(bubble.x - bubble.radius / 3, bubble.y - bubble.radius / 3, 1, bubble.x, bubble.y, bubble.radius);
+                gradient.addColorStop(0, "white");
+                gradient.addColorStop(0.3, bubble.color);
+                gradient.addColorStop(1, "rgba(0,0,0,0)");
+
+                ctx.fillStyle = gradient;
                 ctx.fill();
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+                ctx.lineWidth = 2;
                 ctx.stroke();
                 ctx.closePath();
-
-                // Check for click/pop (simulated for eye-tracking/hand-imitation context)
-                // For actual user input:
             });
 
             // Remove off-screen bubbles
@@ -79,7 +98,7 @@ export default function BabyLeapGame({ onScoreUpdate, onGameOver, isPlaying }: G
 
             gameState.current.bubbles.forEach((bubble, index) => {
                 const dist = Math.sqrt((clickX - bubble.x) ** 2 + (clickY - bubble.y) ** 2);
-                if (dist < bubble.radius * 2) {
+                if (dist < bubble.radius * 2.5) {
                     gameState.current.bubbles.splice(index, 1);
                     setScore(prev => {
                         const newScore = prev + 10;
@@ -99,22 +118,22 @@ export default function BabyLeapGame({ onScoreUpdate, onGameOver, isPlaying }: G
     }, [isPlaying, onScoreUpdate]);
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center bg-blue-50/10">
+        <div className="relative w-full h-full flex items-center justify-center bg-[#0A0B1E]">
             <canvas
                 ref={canvasRef}
                 width={800}
                 height={450}
-                className="w-full h-full object-contain cursor-crosshair"
+                className="w-full h-full object-contain cursor-crosshair opacity-80"
             />
-            <div className="absolute top-6 left-6 flex items-center gap-4">
-                <div className="bg-white/90 backdrop-blur px-6 py-3 rounded-2xl shadow-lg border border-blue-100">
-                    <p className="text-xs font-black text-blue-400 uppercase tracking-widest mb-1">Score</p>
-                    <p className="text-2xl font-black text-slate-900">{score}</p>
+            <div className="absolute top-8 left-8 flex items-center gap-4">
+                <div className="bg-white/[0.03] backdrop-blur-3xl px-8 py-4 rounded-[2rem] border border-white/10 shadow-2xl">
+                    <p className="text-[9px] font-black text-[#20FFB0] uppercase tracking-[0.4em] mb-1">Score Monitor</p>
+                    <p className="text-3xl font-black text-white">{score}</p>
                 </div>
             </div>
-            <div className="absolute top-6 right-6">
-                <div className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-blue-500/20">
-                    Pop the Bubbles!
+            <div className="absolute top-8 right-8">
+                <div className="bg-[#20FFB0]/10 text-[#20FFB0] px-8 py-4 rounded-[2rem] font-black text-[10px] uppercase tracking-[0.3em] border border-[#20FFB0]/20 backdrop-blur-3xl shadow-[0_0_20px_rgba(32,255,176,0.1)]">
+                    Engage: Bubble Popping
                 </div>
             </div>
         </div>
